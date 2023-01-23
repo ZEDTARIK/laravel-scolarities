@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NiveauController;
+use App\Http\Controllers\YearSchoolController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/niveaux', [NiveauController::class, 'index'])->name('niveaux');
+    Route::prefix('niveaux')->group(function () {
+        Route::get('/', [NiveauController::class, 'index'])->name('niveaux');
+    });
 
+    Route::prefix('settings')->group(function () {
+        Route::get('/', [YearSchoolController::class, 'index'])->name('settings');
+    });
 });
