@@ -5,7 +5,7 @@
 
         <div class="flex justify-between items-center mt-2">
             <h4>Liste des annees scolaires</h4>
-            <a href="" class="bg-blue-500 rounded-md p-2 text-sm text-white">
+            <a href="{{ route('settings.create_school_year')}}" class="bg-blue-500 rounded-md p-2 text-sm text-white">
                 Nouvelle Annee Scolaire
             </a>
         </div>

@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class YearSchoolController extends Controller
 {
-    public function index(){
+
+    public function index()
+    {
         return view('settings.index');
+    }
+
+    public function create()
+    {
+        return view('settings.create');
     }
 }
