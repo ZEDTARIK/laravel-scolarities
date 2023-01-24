@@ -5,7 +5,7 @@
 
         <div class="p-5">
             <x-jet-label value="{{__('Annee Scolaire :')}}" class="p-1" />
-            <input wire:model="schoolYear" type="text" class="block mt-3 rounded-lg border-gray-500 w-full @error('schoolYear') border-red-500 @enderror">
+            <input wire:model="schoolYear" type="text" class="block mt-3 rounded-lg w-full @error('schoolYear') border-red-500 @enderror">
 
             @error('schoolYear')
             <div class="text text-red-400 rounded-lg text-sm"> * {{ $message }}</div>

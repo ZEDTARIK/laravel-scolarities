@@ -4,7 +4,10 @@
         {{-- titre et Button  creation  --}}
 
         <div class="flex justify-between items-center mt-2">
-            <h4>Liste des annees scolaires</h4>
+
+            <div class="">
+                <input placeholder="Rechercher par Annee" wire:model="search" type="text" class="block mt-1 rounded-lg border-gray-500 w-full">
+            </div>
             <a href="{{ route('settings.create_school_year')}}" class="bg-blue-500 rounded-md p-2 text-sm text-white">
                 Nouvelle Annee Scolaire
             </a>
@@ -25,32 +28,47 @@
             <div class="py-4 inline-block min-w-full">
                 <div class="overflow-hidden">
                     <table class="min-w-full text-center">
-                        <thead class="border-b-2 bg-gray-50">
+                        <thead class="border-b-1 bg-gray-100">
                             <tr>
-                                <th class="text-sm font-medium text-gray-900 px-6 py-6">Thead</th>
-                                <th class="text-sm font-medium text-gray-900 px-6 py-6">Thead</th>
-                                <th class="text-sm font-medium text-gray-900 px-6 py-6">Thead</th>
-                                <th class="text-sm font-medium text-gray-900 px-6 py-6">Thead</th>
+                                <th class="text-sm font-medium text-gray-900 px-6 py-6">#</th>
+                                <th class="text-sm font-medium text-gray-900 px-6 py-6">School Year</th>
+                                <th class="text-sm font-medium text-gray-900 px-6 py-6">Active</th>
+                                <th class="text-sm font-medium text-gray-900 px-6 py-6">Actions</th>
                             </tr>
                         </thead>
 
                         <tbody>
+                            @forelse($YearSchoolList as $item)
                             <tr class="border-b-2 border-gray-100">
-                                <td class="text-sm font-medium text-gray-900 px-6 py-6">tbody</td>
-                                <td class="text-sm font-medium text-gray-900 px-6 py-6">tbody</td>
-                                <td class="text-sm font-medium text-gray-900 px-6 py-6">tbody</td>
-                                <td class="text-sm font-medium text-gray-900 px-6 py-6">tbody</td>
+                                <td class="text-sm font-medium text-gray-900 px-6 py-6">{{ $item->id }}</td>
+                                <td class="text-sm font-medium text-gray-900 px-6 py-6">{{ $item->school_year }}</td>
+                                <td class="text-sm font-medium text-gray-900 px-6 py-6">
+                                    @if($item->active)
+                                    <span class="p-1 text-sm bg-green-400 text-white rounded-lg">Active</span>
+                                    @else
+                                    <span class="p-1 text-sm bg-red-400 text-white rounded-lg">In Active</span>
+                                    @endif
+                                </td>
+                                <td class="text-sm font-medium text-gray-900 px-6 py-6">
+                                    @if($item->active)
+                                    <button class="p-1 text-sm bg-blue-500 text-white rounded-lg text-center">Rendre Active</button>
+                                    @else
+                                    <button class="p-1 text-sm bg-blue-300 text-white rounded-lg text-center">Rendre InActive</button>
+                                    @endif
+                                </td>
                             </tr>
-                            <tr class="border-b-2 border-gray-100">
-                                <td class="text-sm font-medium text-gray-900 px-6 py-6">tbody</td>
-                                <td class="text-sm font-medium text-gray-900 px-6 py-6">tbody</td>
-                                <td class="text-sm font-medium text-gray-900 px-6 py-6">tbody</td>
-                                <td class="text-sm font-medium text-gray-900 px-6 py-6">tbody</td>
+                            @empty
+                            <tr> 
+                                <td class="text-sm text-center font-medium text-gray-900 px-3">No Data</td> 
                             </tr>
+                            @endforelse
+
                         </tbody>
                     </table>
 
-                    {{-- Pagination --}}
+                    <div class="p-3">
+                        {{ $YearSchoolList->links() }}
+                    </div>
 
                 </div>
             </div>
