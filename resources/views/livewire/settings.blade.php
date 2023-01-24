@@ -12,10 +12,11 @@
 
 
         <div class="flex flex-col">
-            {{-- message aui apparitra apre une operation --}}
+            @if(Session::get('success'))
             <div class="block p-1 bg-green-500 text-white rounded-sm mt-2 text-center">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, aperiam!
+                <span>{{ Session::get('success')}}</span>
             </div>
+            @endif
         </div>
 
         {{-- Stylies le tableau --}}

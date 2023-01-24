@@ -32,7 +32,7 @@ class CreateSchoolYear extends Component
             if ($yearSchool) {
                 $this->schoolYear = "";
             }
-            return redirect()->back()->with('success', 'Annee Scolaire bien Ajouter');
+            return redirect()->route('settings')->with('success', 'Annee Scolaire bien Ajouter');
         } catch (\Throwable $th) {
             throw $th;
         }
