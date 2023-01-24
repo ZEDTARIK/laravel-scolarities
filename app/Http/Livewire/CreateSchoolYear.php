@@ -9,7 +9,7 @@ use Livewire\Component;
 class CreateSchoolYear extends Component
 {
 
-    public $libelle;
+    public $schoolYear;
 
 
     public function render()
@@ -20,17 +20,17 @@ class CreateSchoolYear extends Component
     public function store(YearSchool $yearSchool)
     {
         $this->validate([
-            'libelle' => 'string|required|max:9|unique:year_schools,school_year',
+            'schoolYear' => 'string|required|max:9|unique:year_schools,school_year',
         ]);
 
         $currentYear = Carbon::now()->format('Y');
         try {
-            $yearSchool->school_year = $this->libelle;
+            $yearSchool->school_year = $this->schoolYear;
             $yearSchool->current_year = $currentYear;
             $yearSchool->save();
 
             if ($yearSchool) {
-                $this->libelle = "";
+                $this->schoolYear = "";
             }
             return redirect()->back()->with('success', 'Annee Scolaire bien Ajouter');
         } catch (\Throwable $th) {
